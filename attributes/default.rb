@@ -19,6 +19,9 @@
 #
 
 default['gerrit']['version'] = "2.2.1"
+default['gerrit']['checksum'] = {
+  '2.2.1' => "8af3c50c8b"
+}
 
 default['gerrit']['hostname'] = node['fqdn']
 default['gerrit']['port'] = "29418"
