@@ -95,7 +95,7 @@ bash "Starting gerrit daemon" do
   user "gerrit2"
   group "gerrit2"
   code <<-EOH
-  ./home/gerrit2/review_site/bin/gerrit.sh start
+  /home/gerrit2/review_site/bin/gerrit.sh start
   EOH
 end
 
