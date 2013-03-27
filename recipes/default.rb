@@ -26,9 +26,10 @@ user "gerrit2" do
   action :manage
 end
 
-remote_file "/home/gerrit2/gerrit.war" do
+remote_file "#{Chef::Config[:file_cache_path]}/gerrit.war" do
   owner "gerrit2"
   source "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
+  checksum node['gerrit']['checksum'][node['gerrit']['version']]
 end
 
 require_recipe "build-essential"
@@ -80,9 +81,9 @@ require_recipe "git"
 bash "Initializing Gerrit site" do
   user "gerrit2"
   group "gerrit2"
-  cwd "/home/gerrit2"
+  cwd Chef::Config[:file_cache_path]
   code <<-EOH
-  java -jar gerrit.war init -d review_site
+  java -jar gerrit.war init -d /home/gerrit2/review_site
   EOH
 end
 
@@ -94,7 +95,7 @@ bash "Starting gerrit daemon" do
   user "gerrit2"
   group "gerrit2"
   code <<-EOH
-  ./home/gerrit2/review_site/bin/gerrit.sh start
+  /home/gerrit2/review_site/bin/gerrit.sh start
   EOH
 end
 
