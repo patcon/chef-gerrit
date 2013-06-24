@@ -37,11 +37,11 @@ remote_file "#{Chef::Config[:file_cache_path]}/gerrit.war" do
   checksum node['gerrit']['checksum'][node['gerrit']['version']]
 end
 
-require_recipe "build-essential"
-require_recipe "mysql"
-require_recipe "mysql::ruby"
-require_recipe "mysql::server"
-require_recipe "database"
+include_recipe "build-essential"
+include_recipe "mysql"
+include_recipe "mysql::ruby"
+include_recipe "mysql::server"
+include_recipe "database"
 
 mysql_connection_info = {
     :host =>  "localhost",
@@ -81,8 +81,8 @@ mysql_database "flushing mysql privileges" do
   sql "FLUSH PRIVILEGES"
 end
 
-require_recipe "java"
-require_recipe "git"
+include_recipe "java"
+include_recipe "git"
 
 bash "Initializing Gerrit site" do
   user "gerrit2"
