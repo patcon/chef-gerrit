@@ -18,9 +18,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-default['gerrit']['version'] = "2.2.1"
+default['gerrit']['version'] = "2.6.1"
 default['gerrit']['checksum'] = {
-  '2.2.1' => "8af3c50c8b"
+  '2.6.1' => "bf04186b43"
 }
 
 default['gerrit']['hostname'] = node['fqdn']
