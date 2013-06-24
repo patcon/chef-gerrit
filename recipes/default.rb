@@ -33,7 +33,7 @@ end
 
 remote_file "#{Chef::Config[:file_cache_path]}/gerrit.war" do
   owner "gerrit2"
-  source "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
+  source "http://gerrit-releases.storage.googleapis.com/gerrit-#{node['gerrit']['version']}.war"
   checksum node['gerrit']['checksum'][node['gerrit']['version']]
 end
 
