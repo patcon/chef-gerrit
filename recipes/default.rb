@@ -27,6 +27,7 @@ user "gerrit2" do
   gid "gerrit2"
   home "/home/gerrit2"
   comment "Gerrit system user"
+  supports :manage_home => true
   action :manage
 end
 
