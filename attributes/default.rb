@@ -26,3 +26,4 @@ default['gerrit']['checksum'] = {
 default['gerrit']['hostname'] = node['fqdn']
 default['gerrit']['port'] = "29418"
 default['gerrit']['frontend_url'] = "http://#{node['fqdn']}:8080/"
+default['build_essential']['compiletime'] = true
