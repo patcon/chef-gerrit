@@ -28,7 +28,7 @@ user "gerrit2" do
   home "/home/gerrit2"
   comment "Gerrit system user"
   supports :manage_home => true
-  action :manage
+  action :create
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/gerrit.war" do
