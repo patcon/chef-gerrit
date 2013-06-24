@@ -18,24 +18,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+group "gerrit2" do
+  action :create
+end
+
 user "gerrit2" do
   uid "2345"
   gid "gerrit2"
   home "/home/gerrit2"
   comment "Gerrit system user"
-  action :manage
+  supports :manage_home => true
+  action :create
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/gerrit.war" do
   owner "gerrit2"
-  source "http://gerrit.googlecode.com/files/gerrit-#{node['gerrit']['version']}.war"
+  source "http://gerrit-releases.storage.googleapis.com/gerrit-#{node['gerrit']['version']}.war"
   checksum node['gerrit']['checksum'][node['gerrit']['version']]
 end
 
-require_recipe "build-essential"
-require_recipe "mysql"
-require_recipe "mysql::server"
-require_recipe "database"
+include_recipe "build-essential"
+include_recipe "mysql"
+include_recipe "mysql::ruby"
+include_recipe "mysql::server"
+include_recipe "database"
 
 mysql_connection_info = {
     :host =>  "localhost",
@@ -75,8 +81,8 @@ mysql_database "flushing mysql privileges" do
   sql "FLUSH PRIVILEGES"
 end
 
-require_recipe "java"
-require_recipe "git"
+include_recipe "java"
+include_recipe "git"
 
 bash "Initializing Gerrit site" do
   user "gerrit2"
