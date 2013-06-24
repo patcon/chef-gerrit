@@ -18,6 +18,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+group "gerrit2" do
+  action :create
+end
+
 user "gerrit2" do
   uid "2345"
   gid "gerrit2"
